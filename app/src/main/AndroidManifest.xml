@@ -19,7 +19,8 @@
 
         <activity android:name=".Step2Activity"
             android:label="Step 2"/>
-
+        <activity android:name=".Step3Activity"
+            android:label="Step 3"/>
     </application>
 
 </manifest>

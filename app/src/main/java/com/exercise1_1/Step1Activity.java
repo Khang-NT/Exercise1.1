@@ -5,13 +5,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 
 import static android.text.TextUtils.isEmpty;
 
 public class Step1Activity extends AppCompatActivity {
 
     EditText fname, lname, email, phone;
-
+    RadioGroup rg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,14 +22,19 @@ public class Step1Activity extends AppCompatActivity {
         lname = (EditText) findViewById(R.id.ed_lname);
         email = (EditText) findViewById(R.id.ed_email);
         phone = (EditText) findViewById(R.id.ed_phone);
+        rg = (RadioGroup)findViewById(R.id.rg_sex);
 
         findViewById(R.id.b_next).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (checkInput()) {
                     Intent step2 = new Intent(getApplicationContext(), Step2Activity.class);
+                    step2.putExtra("fname", fname.getText().toString());
+                    step2.putExtra("lname", lname.getText().toString());
+                    step2.putExtra("email", email.getText().toString());
+                    step2.putExtra("phone", phone.getText().toString());
+                    step2.putExtra("sex", rg.getCheckedRadioButtonId() == R.id.rb_female ? 1 : 0);
                     startActivity(step2);
-                    finish();
                 }
             }
         });

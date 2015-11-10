@@ -1,30 +1,58 @@
 package com.exercise1_1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class Step2Activity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
+public class Step2Activity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, CompoundButton.OnCheckedChangeListener {
     private static final String TAG = "Step2Activity";
 
     TextView salary;
+    int vsalary = 0;
+    int checkedSportCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.step2);
 
-        ((SeekBar) findViewById(R.id.sb_salary)).setOnSeekBarChangeListener(this);
         salary = (TextView)findViewById(R.id.tv_salary);
+        ((SeekBar) findViewById(R.id.sb_salary)).setOnSeekBarChangeListener(this);
+        ((CheckBox) findViewById(R.id.cb1)).setOnCheckedChangeListener(this);
+        ((CheckBox) findViewById(R.id.cb2)).setOnCheckedChangeListener(this);
+        ((CheckBox) findViewById(R.id.cb3)).setOnCheckedChangeListener(this);
+        ((CheckBox) findViewById(R.id.cb4)).setOnCheckedChangeListener(this);
+        ((CheckBox) findViewById(R.id.cb5)).setOnCheckedChangeListener(this);
+        ((CheckBox) findViewById(R.id.cb6)).setOnCheckedChangeListener(this);
+        findViewById(R.id.b_done).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkedSportCount > 0) {
+                    Intent step3 = new Intent(getApplicationContext(), Step3Activity.class);
+                    step3.putExtras(getIntent().getExtras());
+                    step3.putExtra("salary", vsalary);
+
+                    startActivity(step3);
+                }
+                else Toast.makeText(Step2Activity.this, "User must select one kind of sports", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        vsalary = progress * 100;
         if (fromUser)
-            salary.setText("Your salary: " + progress * 100 + " dollars");
+            salary.setText("Your salary: " + vsalary + " dollars");
+
     }
 
     @Override
@@ -35,5 +63,11 @@ public class Step2Activity extends AppCompatActivity implements SeekBar.OnSeekBa
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
 
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) checkedSportCount ++;
+            else checkedSportCount--;
     }
 }

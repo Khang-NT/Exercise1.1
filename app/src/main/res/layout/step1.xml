@@ -21,7 +21,8 @@
             android:layout_weight="1.0"
             android:hint="First Name"
             android:inputType="textCapWords"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:nextFocusDown="@+id/ed_lname"/>
 
         <EditText
             android:id="@+id/ed_lname"
