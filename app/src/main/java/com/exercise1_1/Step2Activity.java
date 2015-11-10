@@ -19,6 +19,8 @@ public class Step2Activity extends AppCompatActivity implements SeekBar.OnSeekBa
         salary = (TextView)findViewById(R.id.tv_salary);
     }
 
+
+
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (fromUser)
