@@ -3,6 +3,7 @@ package com.exercise1_1;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -46,7 +47,11 @@ public class Step2Activity extends AppCompatActivity implements SeekBar.OnSeekBa
         overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_down);
     }
 
-
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        ((SnowEffect) findViewById(R.id.snowEffect)).passGesture(event);
+        return super.onTouchEvent(event);
+    }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
