@@ -43,6 +43,7 @@ public class Step2Activity extends AppCompatActivity implements SeekBar.OnSeekBa
                 else Toast.makeText(Step2Activity.this, "User must select one kind of sports", Toast.LENGTH_SHORT).show();
             }
         });
+        overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_down);
     }
 
 

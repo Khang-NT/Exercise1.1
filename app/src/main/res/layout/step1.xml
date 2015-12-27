@@ -1,89 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="40.0dp">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:id="@+id/ll_name"
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="fill_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="40.0dp">
 
+        <LinearLayout
+            android:id="@+id/ll_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/ed_fname"
+                android:layout_width="0.0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:hint="First Name"
+                android:inputType="textCapWords"
+                android:nextFocusDown="@+id/ed_lname"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/ed_lname"
+                android:layout_width="0.0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:hint="Last Name"
+                android:inputType="textCapWords"
+                android:singleLine="true" />
+        </LinearLayout>
 
         <EditText
-            android:id="@+id/ed_fname"
-            android:layout_width="0.0dp"
+            android:id="@+id/ed_email"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:hint="First Name"
-            android:inputType="textCapWords"
+            android:layout_below="@+id/ll_name"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
             android:singleLine="true"
-            android:nextFocusDown="@+id/ed_lname"/>
+            android:text="abc@gmail.com" />
 
         <EditText
-            android:id="@+id/ed_lname"
-            android:layout_width="0.0dp"
+            android:id="@+id/ed_phone"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:hint="Last Name"
-            android:inputType="textCapWords"
+            android:layout_below="@+id/ed_email"
+            android:digits="+0123456789"
+            android:hint="Phone Number"
+            android:inputType="phone"
             android:singleLine="true" />
-    </LinearLayout>
 
-    <EditText
-        android:id="@+id/ed_email"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ll_name"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:singleLine="true"
-        android:text="abc@gmail.com" />
-
-    <EditText
-        android:id="@+id/ed_phone"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ed_email"
-        android:hint="Phone Number"
-        android:inputType="phone"
-        android:digits="+0123456789"
-        android:singleLine="true" />
-
-    <RadioGroup
-        android:id="@+id/rg_sex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ed_phone"
-        android:layout_centerHorizontal="true"
-        android:checkedButton="@+id/rb_female"
-        android:orientation="horizontal">
-
-        <RadioButton
+        <RadioGroup
+            android:id="@+id/rg_sex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Male" />
+            android:layout_below="@+id/ed_phone"
+            android:layout_centerHorizontal="true"
+            android:checkedButton="@+id/rb_female"
+            android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/rb_female"
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male" />
+
+            <RadioButton
+                android:id="@+id/rb_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25.0dp"
+                android:text="Female" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/b_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25.0dp"
-            android:text="Female" />
-    </RadioGroup>
+            android:layout_below="@+id/rg_sex"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20.0dp"
+            android:text="NEXT"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
 
-    <Button
-        android:id="@+id/b_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rg_sex"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20.0dp"
-        android:text="NEXT"
-        android:textColor="@android:color/white" />
-</RelativeLayout>
+    <com.exercise1_1.SnowEffect
+        android:id="@+id/snowEffect"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:numSnowObjects="30"
+        app:minRadius="1dp"
+        app:maxRadius="4dp"
+        app:numFPS="30"
+        app:snowColor="#ffd7d5" />
+</FrameLayout>

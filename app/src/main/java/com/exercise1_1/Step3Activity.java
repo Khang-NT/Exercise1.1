@@ -27,6 +27,7 @@ public class Step3Activity extends AppCompatActivity implements View.OnClickList
 
         findViewById(R.id.b_restart).setOnClickListener(this);
         findViewById(R.id.b_sendmail).setOnClickListener(this);
+        overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_down);
     }
 
     @Override
